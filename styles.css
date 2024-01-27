@@ -1,0 +1,23 @@
+body {
+  background-color: white;
+}
+
+.card {
+  width: 300px;
+  height: 400px;
+  text-align: center;
+  margin: 150px auto;
+  border-radius: 10px;
+  border-color: black;
+  border-style: solid;
+  font-family: Impact, sans-serif;
+}
+
+.inputs {
+  margin: 50px auto;
+  padding: 10px;
+}
+
+.submitbutton {
+  background-color: lightblue;
+}
