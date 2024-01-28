@@ -3,9 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./favicon-32x32.png" />
+    <link rel="stylesheet" href="styles.css" />
     <title>Document</title>
   </head>
   <body>
-    <p>hello world</p>
+    <script>
+      function redirect() {
+        window.location.href = 'index.html';
+      }
+    </script>
+    <div class="container">
+      <br /><br />
+      <form>
+        <input
+          type="text"
+          id="name"
+          required
+          placeholder="enter your user"
+        /><br /><br />
+        <input
+          type="password"
+          id="password"
+          required
+          placeholder="enter your password"
+        /><br /><br />
+        <input
+          type="password"
+          id="repassword"
+          required
+          placeholder="retype password"
+        /><br /><br />
+        <button type="button" onclick="validate()">continue</button>
+      </form>
+    </div>
+    <script>
+      function validate() {
+        username = document.getElementById('name').value;
+        Password = document.getElementById('password').value;
+        repassword = document.getElementById('repassword').value;
+
+        if (Password !== repassword) {
+          window.alert("password doesn't match with retyped password");
+        } else {
+          window.localStorage.setItem('username', JSON.stringify(username));
+          window.localStorage.setItem('password', JSON.stringify(Password));
+          redirect();
+        }
+      }
+    </script>
   </body>
 </html>

@@ -11,12 +11,17 @@
       function change() {
         window.location.href = 'seats.html';
       }
-      function locate() {
+      function signup() {
         window.location.href = 'signup.html';
       }
     </script>
     <div class="card">
-      <strong>WELCOME</strong>
+      <strong>WELCOME</strong><br />
+      <img
+        class="img"
+        src="Untitled_design_(1)_1593583074188_1593583082908.webp"
+        alt="image"
+      />
       <form class="inputs">
         <input
           class="user"
@@ -41,14 +46,24 @@
       function validate() {
         const UserName = document.getElementById('userName').value;
         const Password = document.getElementById('Password').value;
-
+        const name = window.localStorage.getItem('username');
+        const password = window.localStorage.getItem('password');
         if (UserName == '' || Password == '') {
           window.alert('enter valid credentials');
-        } else {
+        }
+        if (
+          name == JSON.stringify(UserName) &&
+          password == JSON.stringify(Password)
+        ) {
           change();
+        } else {
+          alert('invalid credentials');
         }
       }
     </script>
-    <button type="button" onclick="locate()">Sign up</button>
+    <div class="signup">
+      <p>if you are new click on signup</p>
+      <button type="button" onclick="signup()">Sign up</button>
+    </div>
   </body>
 </html>
