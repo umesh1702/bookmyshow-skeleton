@@ -7,6 +7,11 @@
     <title>Document</title>
   </head>
   <body>
+    <script>
+      function redirect() {
+        window.location.href = 'payments.html';
+      }
+    </script>
     <div class="seat_container">
       <div class="seat">1</div>
       <div class="seat">2</div>
@@ -24,29 +29,29 @@
     <p id="amount"></p>
     <script>
       var seats;
-      document.querySelectorAll('.seat').forEach((seat) => {
-        seat.addEventListener('click', () => {
-          seat.classList.toggle('selected');
-        });
-      });
-      const selected_seats = [];
-      var count = 0;
-      function seatselection() {
-        document.querySelectorAll('.seat').forEach((seat, index) => {
-          if (seat.className == 'seat selected') {
-            selected_seats[index] = index + 1;
+      document.querySelectorAll(".seat").forEach(seat=>{
+        seat.addEventListener("click",()=>{
+          seat.classList.toggle("selected");          
+          })
+
+      })
+      var selected_seats=[]
+      var count;
+     function seatselection(){
+        document.querySelectorAll(".seat").forEach((seat,index)=>{
+          if(seat.className == "seat selected"){
+            selected_seats[index] = index+1
           }
-        });
-        for (let i = 0; i <= selected_seats.length; i++) {
-          if (selected_seats[i] !== undefined) {
-            count += 1;
-          }
-        }
-        console.log(selected_seats[0]);
-        document.getElementById('para').innerHTML = 'Your selected seats';
-        document.getElementById('output').innerHTML = selected_seats;
-        document.getElementById('amount').innerHTML = 200 * count;
+          
+        })
+        selected_seats = selected_seats.filter(seat=>seat !== undefined);
+
+        document.getElementById("para").innerHTML = "Your selected seats"
+        document.getElementById("output").innerHTML=selected_seats
+        document.getElementById("amount").innerHTML = 200 * (selected_seats.length)
+        
       }
     </script>
+    <button type="button" onclick="redirect()"> continue to payment page</button>
   </body>
 </html>
