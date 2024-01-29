@@ -1,11 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <script>
+      function redirect() {
+        window.location.href = 'seats.html';
+      }
+    </script>
+    <div class="container" onclick="display()">
+      <p>click here to view your Selection</p>
+      <p id="seats"></p>
+      <p id="amount"></p>
+      <p id="message"></p>
+      <button type="button" onclick="msg()">Confirm booking</button>
+      <button type="button" onclick="redirect()">cancel</button>
+    </div>
+    <script>
+      function display() {
+        const seats = window.localStorage.getItem('seats');
+        const amount = window.localStorage.getItem('amount');
+        document.getElementById('seats').innerHTML = seats;
+        document.getElementById('amount').innerHTML = amount;
+      }
+      function msg() {
+        document.getElementById('message').innerHTML =
+          'congratulations!!! your seats have been booked';
+      }
+    </script>
+  </body>
 </html>
