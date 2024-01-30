@@ -83,12 +83,13 @@ button:hover {
   background-color: white;
 }
 .seat_container {
-  margin: auto 750px;
+  margin: 200px 750px;
   display: flex;
   flex-wrap: wrap;
-  width: 400px;
+  width: 350px;
   border: 1px solid black;
-  align-items: center;
+  justify-content: space-between;
+  background-color: whitesmoke;
 }
 .seat {
   width: 25px;
@@ -99,7 +100,7 @@ button:hover {
   text-align: center;
 }
 .seat.selected {
-  background-color: hsl(224, 23%, 55%);
+  background-color: hsl(224, 14%, 32%);
 }
 .seat.unavailable {
   cursor: default;
@@ -107,10 +108,13 @@ button:hover {
 }
 
 .seatsbody {
-  background-image: none;
+  background-image: url('./assets/bookmyshow.svg');
 }
 
 .selectionpage {
-  margin: 100px 300px;
+  margin: 100px 750px;
   text-align: center;
+  background-color: whitesmoke;
+  height: 250px;
+  width: 300px;
 }

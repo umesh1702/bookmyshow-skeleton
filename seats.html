@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <title>Document</title>
+    <link rel="icon" href="./assets/bookmyshow.svg" />
+    <title>Seat selection</title>
   </head>
-  <body class="seatsbody">
+  <body class="seatsbody" onload="unavailable() & display()">
     <script>
       function redirect() {
         window.location.href = 'payments.html';
@@ -35,6 +36,7 @@
       <div class="seat">20</div>
     </div>
     <div class="selectionpage">
+      <br />
       <button type="button" onclick="seatselection()">Save Selection</button>
       <p id="para"></p>
       <p id="output"></p>
@@ -45,14 +47,12 @@
       </button>
     </div>
     <script>
-      var seats;
       document.querySelectorAll('.seat').forEach((seat) => {
         seat.addEventListener('click', () => {
           seat.classList.toggle('selected');
         });
       });
       var selected_seats = [];
-      var count;
       function seatselection() {
         document.querySelectorAll('.seat').forEach((seat, index) => {
           if (seat.className == 'seat selected') {
@@ -66,8 +66,45 @@
           `Seat no : ${selected_seats}`;
         document.getElementById('amount').innerHTML =
           `Amount : ${200 * selected_seats.length}`;
-        window.localStorage.setItem('seats', selected_seats);
+        if (window.localStorage.getItem('seat') !== null) {
+          const seat = JSON.parse(window.localStorage.getItem('seat'));
+          seat.push(selected_seats);
+          window.localStorage.setItem('seat', JSON.stringify(user));
+        } else {
+          window.localStorage.setItem('seats', selected_seats);
+        }
         window.localStorage.setItem('amount', 200 * selected_seats.length);
+      }
+
+      function display() {
+        document.getElementById('para').innerHTML = 'Your selected seats';
+        document.getElementById('output').innerHTML = 'Seat no :';
+        document.getElementById('amount').innerHTML = `Amount : `;
+      }
+      function unavailable() {
+        var v = window.localStorage.getItem('seats');
+        if (v == null) {
+          return;
+        } else {
+          const c = v.split(',');
+          for (let i = 0; i < c.length; i++) {
+            for (
+              let j = 0;
+              j <= document.querySelectorAll('.seat').length;
+              j++
+            ) {
+              if (c[i] == j + 1) {
+                document.querySelectorAll('.seat')[j].className =
+                  'seat selected';
+              }
+            }
+          }
+          document.querySelectorAll('.seat').forEach((seat) => {
+            if (seat.className == 'seat selected') {
+              seat.classList.toggle('unavailable');
+            }
+          });
+        }
       }
     </script>
   </body>
