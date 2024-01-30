@@ -41,17 +41,30 @@
       </form>
     </div>
     <script>
+      const users = [];
       function validate() {
-        username = document.getElementById('name').value;
-        Password = document.getElementById('password').value;
-        repassword = document.getElementById('repassword').value;
-
-        if (Password !== repassword) {
-          window.alert("password doesn't match with retyped password");
+        const username = document.getElementById('name').value;
+        const Password = document.getElementById('password').value;
+        const repassword = document.getElementById('repassword').value;
+        let newusers = { username, Password };
+        if (username == '' || Password == '') {
+          window.alert('enter valid credentials');
         } else {
-          window.localStorage.setItem('username', JSON.stringify(username));
-          window.localStorage.setItem('password', JSON.stringify(Password));
-          redirect();
+          if (Password !== repassword) {
+            window.alert("password doesn't match with retyped password");
+          } else {
+            if (window.localStorage.getItem('user') !== null) {
+              const user = JSON.parse(window.localStorage.getItem('user'));
+              console.log(user);
+              user.push(newusers);
+              window.localStorage.setItem('user', JSON.stringify(user));
+              redirect();
+            } else {
+              users.push(newusers);
+              window.localStorage.setItem('user', JSON.stringify(users));
+              redirect();
+            }
+          }
         }
       }
     </script>

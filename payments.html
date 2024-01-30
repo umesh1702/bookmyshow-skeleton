@@ -12,8 +12,11 @@
         window.location.href = 'seats.html';
       }
     </script>
-    <div class="container" onclick="display()">
-      <p>click here to view your Selection</p>
+    <div class="container">
+      <p>
+        click <button type="button" onclick="display()">Here</button> to view
+        your Selection
+      </p>
       <p id="seats"></p>
       <p id="amount"></p>
       <p id="message"></p>
@@ -24,8 +27,8 @@
       function display() {
         const seats = window.localStorage.getItem('seats');
         const amount = window.localStorage.getItem('amount');
-        document.getElementById('seats').innerHTML = seats;
-        document.getElementById('amount').innerHTML = amount;
+        document.getElementById('seats').innerHTML = `Seat no : ${seats}`;
+        document.getElementById('amount').innerHTML = `Amount : ${amount}`;
       }
       function msg() {
         document.getElementById('message').innerHTML =

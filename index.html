@@ -17,7 +17,7 @@
     </script>
     <img
       class="img"
-      src="bookmyshow-logo_brandlogos.net_rzqea.png"
+      src="./assets/bookmyshow-logo_brandlogos.net_rzqea.png"
       alt="image"
     />
     <div class="card">
@@ -48,19 +48,18 @@
       function validate() {
         const UserName = document.getElementById('userName').value;
         const Password = document.getElementById('Password').value;
-        const name = window.localStorage.getItem('username');
-        const password = window.localStorage.getItem('password');
+        const user = JSON.parse(window.localStorage.getItem('user'));
         if (UserName == '' || Password == '') {
           window.alert('enter valid credentials');
         }
-        if (
-          name == JSON.stringify(UserName) &&
-          password == JSON.stringify(Password)
-        ) {
-          change();
-        } else {
-          alert('invalid credentials');
+        console.log(user.length);
+        for (let i = 0; i < user.length; i++) {
+          if (user[i].username === UserName && user[i].Password === Password) {
+            change();
+            return;
+          }
         }
+        alert('invalid credentials');
       }
     </script>
     <div class="signup">
