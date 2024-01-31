@@ -41,8 +41,11 @@
       <p id="para"></p>
       <p id="output"></p>
       <p id="amount"></p>
+      <button type="button" onclick="rewindselection()">
+        rewind selection
+      </button>
       <br /><br />
-      <button type="button" onclick="redirect()">
+      <button type="button" onclick="redirect() & storeSelectedSeats()">
         continue to payment page
       </button>
     </div>
@@ -66,14 +69,27 @@
           `Seat no : ${selected_seats}`;
         document.getElementById('amount').innerHTML =
           `Amount : ${200 * selected_seats.length}`;
-        if (window.localStorage.getItem('seat') !== null) {
-          const seat = JSON.parse(window.localStorage.getItem('seat'));
-          seat.push(selected_seats);
-          window.localStorage.setItem('seat', JSON.stringify(user));
+        window.localStorage.setItem('currentselection', selected_seats);
+      }
+      function storeSelectedSeats() {
+        if (window.localStorage.getItem('seats') !== null) {
+          const seats = window.localStorage.getItem('seats');
+          console.log(seats);
+          const storing_seats = selected_seats.concat(seats);
+          window.localStorage.setItem('seats', storing_seats);
         } else {
           window.localStorage.setItem('seats', selected_seats);
         }
         window.localStorage.setItem('amount', 200 * selected_seats.length);
+      }
+      function rewindselection() {
+        selected_seats.pop();
+        document.getElementById('para').innerHTML = 'Your selected seats';
+        document.getElementById('output').innerHTML =
+          `Seat no : ${selected_seats}`;
+        document.getElementById('amount').innerHTML =
+          `Amount : ${200 * selected_seats.length}`;
+        window.localStorage.setItem('currentselection', selected_seats);
       }
 
       function display() {

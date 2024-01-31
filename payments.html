@@ -16,18 +16,8 @@
       function redirecthome() {
         window.location.href = 'index.html';
       }
-    </script>
-    <div class="container">
-      <p id="message"></p>
-      <p id="seats"></p>
-      <p id="amount"></p>
-      <button type="button" onclick="msg()">Confirm booking</button>
-      <button type="button" onclick="redirect()">cancel</button><br /><br />
-      <button type="button" onclick="redirecthome()">Back to Home page</button>
-    </div>
-    <script>
       function display() {
-        const seats = window.localStorage.getItem('seats');
+        const seats = window.localStorage.getItem('currentselection');
         const amount = window.localStorage.getItem('amount');
         document.getElementById('seats').innerHTML = `Seat no : ${seats}`;
         document.getElementById('amount').innerHTML = `Amount : ${amount}`;
@@ -37,5 +27,13 @@
         alert('congratulations!!! your seats have been booked');
       }
     </script>
+    <div class="container">
+      <p id="message"></p>
+      <p id="seats"></p>
+      <p id="amount"></p>
+      <button type="button" onclick="msg()">Confirm booking</button>
+      <button type="button" onclick="redirect()">cancel</button><br /><br />
+      <button type="button" onclick="redirecthome()">Back to Home page</button>
+    </div>
   </body>
 </html>

@@ -15,6 +15,28 @@
       function signup() {
         window.location.href = 'signup.html';
       }
+      function validate() {
+        const UserName = document.getElementById('userName').value;
+        const Password = document.getElementById('Password').value;
+        const user = JSON.parse(window.localStorage.getItem('user'));
+        if (user != null) {
+          if (UserName == '' || Password == '') {
+            window.alert('enter valid credentials');
+          }
+          for (let i = 0; i < user.length; i++) {
+            if (
+              user[i].username === UserName &&
+              user[i].Password === Password
+            ) {
+              change();
+              return;
+            }
+          }
+          alert('invalid credentials');
+        } else {
+          alert('Invalid Credentials');
+        }
+      }
     </script>
     <img
       class="img"
@@ -45,30 +67,7 @@
         </button>
       </form>
     </div>
-    <script>
-      function validate() {
-        const UserName = document.getElementById('userName').value;
-        const Password = document.getElementById('Password').value;
-        const user = JSON.parse(window.localStorage.getItem('user'));
-        if (user != null) {
-          if (UserName == '' || Password == '') {
-            window.alert('enter valid credentials');
-          }
-          for (let i = 0; i < user.length; i++) {
-            if (
-              user[i].username === UserName &&
-              user[i].Password === Password
-            ) {
-              change();
-              return;
-            }
-          }
-          alert('invalid credentials');
-        } else {
-          alert('Invalid Credentials');
-        }
-      }
-    </script>
+
     <div class="signup">
       <p>if you are new click on signup</p>
       <button type="button" onclick="signup()">Sign up</button>
