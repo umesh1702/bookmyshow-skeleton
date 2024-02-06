@@ -37,7 +37,9 @@
     </div>
     <div class="selectionpage">
       <br />
-      <button type="button" onclick="seatselection()">Save Selection</button>
+      <button id="savebutton" type="button" onclick="seatselection()" disabled>
+        Save Selection
+      </button>
       <p id="para"></p>
       <p id="output"></p>
       <p id="amount"></p>
@@ -56,6 +58,7 @@
       document.querySelectorAll('.seat').forEach((seat) => {
         seat.addEventListener('click', () => {
           seat.classList.toggle('selected');
+          document.getElementById('savebutton').disabled = false;
         });
       });
       var selected_seats = [];
