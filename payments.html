@@ -13,6 +13,10 @@
         window.localStorage.removeItem('seats');
         window.location.href = 'seats.html';
       }
+      function msg() {
+        alert('congratulations!!! your seats are booked');
+        showselection();
+      }
       function redirecthome() {
         window.location.href = 'index.html';
       }
@@ -31,7 +35,8 @@
       <p id="message"></p>
       <p id="seats"></p>
       <p id="amount"></p>
-      <button type="button" onclick="showselection()">Confirm booking</button>
+      <p id="msg"></p>
+      <button type="button" onclick="msg()">Confirm booking</button>
       <button type="button" onclick="redirect()">cancel</button><br /><br />
       <button type="button" onclick="redirecthome()">Back to Home page</button>
     </div>

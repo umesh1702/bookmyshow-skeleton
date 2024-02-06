@@ -41,6 +41,7 @@
       <p id="para"></p>
       <p id="output"></p>
       <p id="amount"></p>
+
       <br /><br />
       <button
         id="btn"
@@ -59,14 +60,13 @@
       });
       var selected_seats = [];
       function seatselection() {
+        selected_seats = [];
         document.querySelectorAll('.seat').forEach((seat, index) => {
           if (seat.className == 'seat selected') {
             selected_seats[index] = index + 1;
           }
         });
-        selected_seats = selected_seats.filter(
-          (value, index) => selected_seats.indexOf(value) === index,
-        );
+        selected_seats = selected_seats.filter((seat) => seat !== undefined);
         document.getElementById('para').innerHTML = 'Your selected seats';
         document.getElementById('output').innerHTML =
           `Seat no : ${selected_seats}`;
@@ -74,7 +74,6 @@
           `Amount : ${200 * selected_seats.length}`;
         window.localStorage.setItem('currentselection', selected_seats);
         document.getElementById('btn').disabled = false;
-        console.log(selected_seats);
       }
       function storeSelectedSeats() {
         if (window.localStorage.getItem('seats') !== null) {
@@ -87,6 +86,7 @@
         }
         window.localStorage.setItem('amount', 200 * selected_seats.length);
       }
+
       function display() {
         document.getElementById('para').innerHTML = 'Your selected seats';
         document.getElementById('output').innerHTML = 'Seat no :';

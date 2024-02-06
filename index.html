@@ -2,8 +2,8 @@
 <html>
   <head>
     <meta charset="utf8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="./assets/bookmyshow.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <title>BookMyShow</title>
   </head>
@@ -30,11 +30,22 @@
             ) {
               change();
               return;
+            } else if (
+              user[i].username === UserName &&
+              user[i].Password !== Password
+            ) {
+              alert('Invalid password');
+              return;
+            } else if (
+              user[i].username !== UserName &&
+              user[i].Password === Password
+            ) {
+              alert('Invalid username');
+              return;
             }
           }
-          alert('invalid credentials');
         } else {
-          alert('Invalid Credentials');
+          alert('invalid credentials');
         }
       }
     </script>
