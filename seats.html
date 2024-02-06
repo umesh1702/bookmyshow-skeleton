@@ -45,7 +45,12 @@
         rewind selection
       </button>
       <br /><br />
-      <button type="button" onclick="redirect() & storeSelectedSeats()">
+      <button
+        id="btn"
+        type="button"
+        onclick="redirect() & storeSelectedSeats()"
+        disabled
+      >
         continue to payment page
       </button>
     </div>
@@ -63,13 +68,13 @@
           }
         });
         selected_seats = selected_seats.filter((seat) => seat !== undefined);
-
         document.getElementById('para').innerHTML = 'Your selected seats';
         document.getElementById('output').innerHTML =
           `Seat no : ${selected_seats}`;
         document.getElementById('amount').innerHTML =
           `Amount : ${200 * selected_seats.length}`;
         window.localStorage.setItem('currentselection', selected_seats);
+        document.getElementById('btn').disabled = false;
       }
       function storeSelectedSeats() {
         if (window.localStorage.getItem('seats') !== null) {
@@ -98,18 +103,18 @@
         document.getElementById('amount').innerHTML = `Amount : `;
       }
       function unavailable() {
-        var v = window.localStorage.getItem('seats');
-        if (v == null) {
+        var storedSeats = window.localStorage.getItem('seats');
+        if (storedSeats == null) {
           return;
         } else {
-          const c = v.split(',');
-          for (let i = 0; i < c.length; i++) {
+          const storedSeatsArray = storedSeats.split(',');
+          for (let i = 0; i < storedSeatsArray.length; i++) {
             for (
               let j = 0;
               j <= document.querySelectorAll('.seat').length;
               j++
             ) {
-              if (c[i] == j + 1) {
+              if (storedSeatsArray[i] == j + 1) {
                 document.querySelectorAll('.seat')[j].className =
                   'seat selected';
               }
