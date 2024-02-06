@@ -41,9 +41,6 @@
       <p id="para"></p>
       <p id="output"></p>
       <p id="amount"></p>
-      <button type="button" onclick="rewindselection()">
-        rewind selection
-      </button>
       <br /><br />
       <button
         id="btn"
@@ -67,7 +64,9 @@
             selected_seats[index] = index + 1;
           }
         });
-        selected_seats = selected_seats.filter((seat) => seat !== undefined);
+        selected_seats = selected_seats.filter(
+          (value, index) => selected_seats.indexOf(value) === index,
+        );
         document.getElementById('para').innerHTML = 'Your selected seats';
         document.getElementById('output').innerHTML =
           `Seat no : ${selected_seats}`;
@@ -75,6 +74,7 @@
           `Amount : ${200 * selected_seats.length}`;
         window.localStorage.setItem('currentselection', selected_seats);
         document.getElementById('btn').disabled = false;
+        console.log(selected_seats);
       }
       function storeSelectedSeats() {
         if (window.localStorage.getItem('seats') !== null) {
@@ -87,16 +87,6 @@
         }
         window.localStorage.setItem('amount', 200 * selected_seats.length);
       }
-      function rewindselection() {
-        selected_seats.pop();
-        document.getElementById('para').innerHTML = 'Your selected seats';
-        document.getElementById('output').innerHTML =
-          `Seat no : ${selected_seats}`;
-        document.getElementById('amount').innerHTML =
-          `Amount : ${200 * selected_seats.length}`;
-        window.localStorage.setItem('currentselection', selected_seats);
-      }
-
       function display() {
         document.getElementById('para').innerHTML = 'Your selected seats';
         document.getElementById('output').innerHTML = 'Seat no :';
