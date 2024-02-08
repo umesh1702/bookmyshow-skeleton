@@ -22,20 +22,21 @@
         if (username == '' || Password == '') {
           window.alert('enter valid credentials');
         } else {
-          if (Password !== repassword) {
-            window.alert("password doesn't match with retyped password");
-          } else {
-            if (window.localStorage.getItem('user') !== null) {
-              const user = JSON.parse(window.localStorage.getItem('user'));
-              console.log(user);
-              user.push(newusers);
-              window.localStorage.setItem('user', JSON.stringify(user));
-              redirect();
-            } else {
-              users.push(newusers);
-              window.localStorage.setItem('user', JSON.stringify(users));
-              redirect();
+          const user = JSON.parse(window.localStorage.getItem('user'));
+          if (user !== null) {
+            for (let i = 0; i < user.length; i++) {
+              if (user[i].username == username) {
+                alert('username already exist');
+                return;
+              }
             }
+            user.push(newusers);
+            localStorage.setItem('user', JSON.stringify(user));
+            redirect();
+          } else {
+            users.push(newusers);
+            localStorage.setItem('user', JSON.stringify(users));
+            redirect();
           }
         }
       }
