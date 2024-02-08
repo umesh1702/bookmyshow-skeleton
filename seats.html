@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="./assets/bookmyshow.svg" />
+    <title>Seat selection</title>
+  </head>
+  <body class="seatsbody" onload="unavailable() & display()">
+    <script>
+      function redirect() {
+        window.location.href = 'payments.html';
+      }
+    </script>
+    <div class="seat_container">
+      <div class="seat">1</div>
+      <div class="seat">2</div>
+      <div class="seat">3</div>
+      <div class="seat">4</div>
+      <div class="seat">5</div>
+      <div class="seat">6</div>
+      <div class="seat">7</div>
+      <div class="seat">8</div>
+      <div class="seat">9</div>
+      <div class="seat">10</div>
+      <div class="seat">11</div>
+      <div class="seat">12</div>
+      <div class="seat">13</div>
+      <div class="seat">14</div>
+      <div class="seat">15</div>
+      <div class="seat">16</div>
+      <div class="seat">17</div>
+      <div class="seat">18</div>
+      <div class="seat">19</div>
+      <div class="seat">20</div>
+    </div>
+    <div class="selectionpage">
+      <br />
+      <button id="savebutton" type="button" onclick="seatselection()" disabled>
+        Save Selection
+      </button>
+      <p id="para"></p>
+      <p id="output"></p>
+      <p id="amount"></p>
+
+      <br /><br />
+      <button
+        id="btn"
+        type="button"
+        onclick="redirect() & storeSelectedSeats()"
+        disabled
+      >
+        continue to payment page
+      </button>
+    </div>
+    <script>
+      document.querySelectorAll('.seat').forEach((seat) => {
+        seat.addEventListener('click', () => {
+          seat.classList.toggle('selected');
+          document.getElementById('savebutton').disabled = false;
+        });
+      });
+      var selected_seats = [];
+      function seatselection() {
+        selected_seats = [];
+        document.querySelectorAll('.seat').forEach((seat, index) => {
+          if (seat.className == 'seat selected') {
+            selected_seats[index] = index + 1;
+          }
+        });
+        selected_seats = selected_seats.filter((seat) => seat !== undefined);
+        document.getElementById('para').innerHTML = 'Your selected seats';
+        document.getElementById('output').innerHTML =
+          `Seat no : ${selected_seats}`;
+        document.getElementById('amount').innerHTML =
+          `Amount : ${200 * selected_seats.length}`;
+        window.localStorage.setItem('currentselection', selected_seats);
+        document.getElementById('btn').disabled = false;
+      }
+      function storeSelectedSeats() {
+        if (window.localStorage.getItem('seats') !== null) {
+          const seats = window.localStorage.getItem('seats');
+          console.log(seats);
+          const storing_seats = selected_seats.concat(seats);
+          window.localStorage.setItem('seats', storing_seats);
+        } else {
+          window.localStorage.setItem('seats', selected_seats);
+        }
+        window.localStorage.setItem('amount', 200 * selected_seats.length);
+      }
+
+      function display() {
+        document.getElementById('para').innerHTML = 'Your selected seats';
+        document.getElementById('output').innerHTML = 'Seat no :';
+        document.getElementById('amount').innerHTML = `Amount : `;
+      }
+      function unavailable() {
+        var storedSeats = window.localStorage.getItem('seats');
+        if (storedSeats == null) {
+          return;
+        } else {
+          const storedSeatsArray = storedSeats.split(',');
+          for (let i = 0; i < storedSeatsArray.length; i++) {
+            for (
+              let j = 0;
+              j <= document.querySelectorAll('.seat').length;
+              j++
+            ) {
+              if (storedSeatsArray[i] == j + 1) {
+                document.querySelectorAll('.seat')[j].className =
+                  'seat selected';
+              }
+            }
+          }
+          document.querySelectorAll('.seat').forEach((seat) => {
+            if (seat.className == 'seat selected') {
+              seat.classList.toggle('unavailable');
+            }
+          });
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,136 @@
+body {
+  background-color: hsl(225, 100%, 94%);
+  background-image: url('./assets/favicon-32x32.png');
+}
+
+.card {
+  max-width: 300px;
+  width: 80%;
+  height: 250px;
+  text-align: center;
+  margin: 10px auto;
+  border-radius: 10px;
+  border: 1px solid rgb(150, 148, 146);
+  font-family: Impact;
+  font-weight: 700;
+  font-size: large;
+  background-color: rgb(255, 252, 252);
+}
+.img {
+  max-width: 400px;
+  width: 100%;
+  margin: auto;
+  height: auto;
+  display: block;
+}
+
+.inputs {
+  margin: auto;
+  padding: 10px;
+}
+
+.user {
+  width: 200px;
+  height: 30px;
+  border-radius: 4px;
+  border-width: 1px;
+}
+.pass {
+  max-width: 200px;
+  width: 100%;
+  height: 30px;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+button {
+  background-color: whitesmoke;
+  border-radius: 4px;
+  color: rgb(0, 112, 210);
+  border: 1px solid rgb(150, 148, 146);
+  cursor: pointer;
+}
+
+.submitbutton {
+  background-color: rgb(0, 112, 210);
+  width: 100%;
+  max-width: 200px;
+  border-radius: 4px;
+  color: whitesmoke;
+  margin: 10px auto;
+  cursor: pointer;
+}
+
+button:hover {
+  color: black;
+}
+
+.signup {
+  text-align: center;
+  margin: auto;
+  font-family: Impact, sans-serif;
+  background-color: whitesmoke;
+  width: 300px;
+  height: 90px;
+  border: 1px solid rgb(150, 148, 146);
+  border-radius: 10px;
+}
+
+.container {
+  max-width: 300px;
+  width: 80%;
+  height: 250px;
+  text-align: center;
+  margin: 20px auto;
+  font-family: Impact;
+  font-weight: 700;
+  font-size: large;
+  border-style: groove;
+  background-color: white;
+}
+.seat_container {
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  max-width: 350px;
+  border: 1px solid black;
+  justify-content: space-between;
+  background-color: whitesmoke;
+}
+.seat {
+  width: 25px;
+  border: 1px solid #1ea83c;
+  cursor: pointer;
+  margin: 10px;
+  border-radius: 2px;
+  text-align: center;
+}
+.seat.selected {
+  background-color: hsl(224, 14%, 32%);
+}
+.seat.unavailable {
+  cursor: default;
+  background-color: aquamarine;
+}
+
+.seatsbody {
+  background-image: url('./assets/bookmyshow.svg');
+}
+
+.selectionpage {
+  margin: 20px auto;
+  text-align: center;
+  background-color: whitesmoke;
+  height: 250px;
+  max-width: 300px;
+  width: 80%;
+}
+#btn:disabled {
+  background-color: black;
+  color: black;
+}
+#savebutton:disabled {
+  background-color: black;
+  color: black;
+}

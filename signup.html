@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./favicon-32x32.png" />
+    <link rel="icon" href="./assets/bookmyshow.svg" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>sign up</title>
+  </head>
+  <body>
+    <script>
+      const users = [];
+      function redirect() {
+        window.location.href = 'index.html';
+      }
+      function validate() {
+        const username = document.getElementById('name').value;
+        const Password = document.getElementById('password').value;
+        const repassword = document.getElementById('repassword').value;
+        let newusers = { username, Password };
+        if (username == '' || Password == '') {
+          window.alert('enter valid credentials');
+        } else {
+          const user = JSON.parse(window.localStorage.getItem('user'));
+          if (user !== null) {
+            for (let i = 0; i < user.length; i++) {
+              if (user[i].username == username) {
+                alert('username already exist');
+                return;
+              }
+            }
+            user.push(newusers);
+            localStorage.setItem('user', JSON.stringify(user));
+            redirect();
+          } else {
+            users.push(newusers);
+            localStorage.setItem('user', JSON.stringify(users));
+            redirect();
+          }
+        }
+      }
+    </script>
+    <div class="container">
+      <br /><br />
+      <form>
+        <input
+          class="user"
+          type="text"
+          id="name"
+          required
+          placeholder="enter your user name"
+        /><br /><br />
+        <input
+          class="pass"
+          type="password"
+          id="password"
+          required
+          placeholder="enter your password"
+        /><br /><br />
+        <input
+          class="pass"
+          type="password"
+          id="repassword"
+          required
+          placeholder="retype password"
+        /><br /><br />
+        <button type="button" onclick="validate()">continue</button>
+      </form>
+    </div>
+  </body>
+</html>

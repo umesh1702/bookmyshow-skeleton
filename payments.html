@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="./assets/bookmyshow.svg" />
+    <title>Payments</title>
+  </head>
+  <body onload="display()">
+    <script>
+      function redirect() {
+        window.localStorage.removeItem('seats');
+        window.location.href = 'seats.html';
+      }
+      function msg() {
+        alert('congratulations!!! your seats are booked');
+        showselection();
+      }
+      function redirecthome() {
+        window.location.href = 'index.html';
+      }
+      function display() {
+        const seats = window.localStorage.getItem('currentselection');
+        const amount = window.localStorage.getItem('amount');
+        document.getElementById('seats').innerHTML = `Seat no : ${seats}`;
+        document.getElementById('amount').innerHTML = `Amount : ${amount}`;
+        document.getElementById('message').innerHTML = 'your selected seats';
+      }
+      function showselection() {
+        window.location.href = 'seats.html';
+      }
+    </script>
+    <div class="container">
+      <p id="message"></p>
+      <p id="seats"></p>
+      <p id="amount"></p>
+      <p id="msg"></p>
+      <button type="button" onclick="msg()">Confirm booking</button>
+      <button type="button" onclick="redirect()">cancel</button><br /><br />
+      <button type="button" onclick="redirecthome()">Back to Home page</button>
+    </div>
+  </body>
+</html>
